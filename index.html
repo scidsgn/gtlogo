@@ -2,105 +2,62 @@
 
 <html>
 	<head>
-		<title>GT Logo Generator</title>
+		<title>GT Logo Creator</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="styles.css?v=1">
+		
+		<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500,600" rel="stylesheet">
+		
+		<link rel="stylesheet" href="res/studio.css">
 		
 		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-		
-		<link rel="manifest" href="/manifest.json">
 	</head>
-	<body>	
-		<!-- <img src="logo.svg" class="logo"> -->
-		<div class="hidden">
-			<img src="res/default.png" id="defaultGTLogo">
-		</div>
+	<body>
 		<main>
-			<content>
-				<div class="hudUI">
-					<canvas id="preview" width="512" height="512"></canvas>
-					
-					<div id="bgHUD" class="hudSection">
-					</div>
-					
-					<div id="logoHUD" class="hudSection visible">
-						<div class="hud size" id="logoSizeH" data-value="170"></div>
-						<div class="hud radius" id="logoInnerRadiusH" data-value="176"></div>
-					</div>
-					
-					<div id="starHUD" class="hudSection">
-					</div>
-					
-					<div id="segmentHUD" class="hudSection">
-						<div class="hud radius" id="segmentOuterRadiusH" data-value="160"></div>
-						<div class="hud radius" id="segmentInnerRadiusH" data-value="118"></div>
-						<div class="hud angle" id="segmentPhaseH" data-value="180"></div>
-					</div>
+			<nav>
+				<div class="visible" data-tab="core">
+					<img src="res/logo.svg">
 				</div>
+				<div data-tab="star">
+					<img src="res/star.svg">
+				</div>
+				<div data-tab="segments">
+					<img src="res/segments.svg">
+				</div>
+			</nav>
+			<aside class="visible" data-tab="core">
+				<h1>Background</h1>				
+				<div id="gtBackgroundOptions"></div>
+				
+				<h1>Shape</h1>				
+				<div id="gtShapeOptions">
+				</div>
+				
+				<h1>Logo</h1>				
+				<div id="gtLogoOptions">
+				</div>
+			</aside>
+			<aside data-tab="star">
+				<h1>Stars</h1>
+				
+				<button id="gtAddStar">Add star</button>
+			</aside>
+			<aside data-tab="segments">
+				<h1>Segments</h1>
+				
+				<button id="gtAddSegment">Add segment set</button>
+			</aside>
+			
+			<content>
+				<canvas id="preview" width="512" height="512"></canvas>
 			</content>
 		</main>
 		
-		<footer>
-			<content class="visible" data-tab="bg">
-				<section>
-					<div>
-						<label>Background:</label>
-						<div class="colorInput"><input id="imgBgColor" class="autorender" value="#FFFFFF" type="color"></div>
-					</div>
-				</section>
-			</content>
-			<content data-tab="logo">
-				<section>
-					<div>
-						<label>Image file:</label>
-						<input type="file" id="logoImage" accept="image/png, image/jpeg">
-					</div>
-					<div>
-						<label>Circle bg:</label>
-						<div class="colorInput"><input id="bgColor" class="autorender" value="#000000" type="color"></div>
-					</div>
-				</section>
-			</content>
-			<content data-tab="star">
-				<section>
-					<div>
-						<label>Color 1:</label>
-						<div class="colorInput"><input id="starColor1" class="autorender" value="#ffff00" type="color"></div>
-					</div>
-					<div>
-						<label>Color 2:</label>
-						<div class="colorInput"><input id="starColor2" class="autorender" value="#ffb904" type="color"></div>
-					</div>
-				</section>
-			</content>
-			<content id="segments" data-tab="segment">
-				<section class="nocount">
-					<div>
-						<label>Spacing:</label>
-						<input id="segmentSpacing" class="autorender" value="16" min="0" max="30" type="range">
-					</div>
-				</section>
-				<button id="addSegment">Add segment</button>
-			</content>
-	
-			<header>
-				<div class="tab visible" data-tab="bg">
-					<img src="res/bg.svg">
-				</div>
-				<div class="tab" data-tab="logo">
-					<img src="res/logo.svg">
-				</div>
-				<div class="tab" data-tab="star">
-					<img src="res/star.svg">
-				</div>
-				<div class="tab" data-tab="segment">
-					<img src="res/segments.svg">
-				</div>
-			</header>
-		</footer>
+		<button class="export">Save image</button>
 		
-		<button class="export" id="startExporting">Export</button>
-		
-		<script src="script.js?v=1"></script>
+		<script src="renderer.js"></script>
+		<script src="ui.js"></script>
+		<script>
+			renderLogo(studioLogoObject)
+		</script>
 	</body>
 </html>
